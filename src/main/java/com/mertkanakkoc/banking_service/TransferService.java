@@ -1,6 +1,7 @@
 package com.mertkanakkoc.banking_service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -12,6 +13,7 @@ public class TransferService {
         this.accountRepository = accountRepository;
     }
 
+    @Transactional
     public void transfer(Long fromId, Long toId, BigDecimal amount){
         Account from = accountRepository.findById(fromId).orElseThrow();
         Account to = accountRepository.findById(toId).orElseThrow();
